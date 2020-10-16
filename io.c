@@ -71,7 +71,7 @@ void debut_jeu(grille *g, grille *gc){
 			{ // touche 'n' pour charger dynamiquement une nouvelle grille
 				char nGrille[255];
 				// efface_grille(*g);
-				printf("Merci d'indiquer le chemin vers la nouvelle grille à charger : ");
+				printf("Entrer le chemin de la grille a charger : ");
 				scanf("%s", nGrille);
 
 				tempsEvolution = 1; // Réinitialisation du temps
@@ -91,11 +91,11 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'c' :
 			{
-				// voisinnage cyclique / non-cyclique
-				if (comptageCyclique) { // On repasse à un comptage non-cyclique
+				//  cyclique / non-cyclique
+				if (comptageCyclique) { 
 					comptageCyclique = 0;
 					compte_voisins_vivants = &(compte_voisins_vivants_non_cyclique);
-				} else { // On repasse à un comptage cyclique
+				} else { 
 					comptageCyclique = 1;
 					compte_voisins_vivants = &(compte_voisins_vivants_cyclique);
 				}
@@ -108,7 +108,7 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'v' :
 			{
-				// activation / désactivation du vieillissement
+				// act / desact  vieillissement
 				vieillissement = !vieillissement;
 				efface_grille(*g);
 				affiche_grille(*g, tempsEvolution, comptageCyclique, vieillissement);

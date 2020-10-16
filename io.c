@@ -34,13 +34,16 @@ void efface_grille (grille g){
 }
 
 void debut_jeu(grille *g, grille *gc, int *tempsEvolution){
+	int comptageNonCyclique = 0;
+	int (*compte_voisins_vivants) (int, int, grille) = compte_voisins_vivants_cyclique;
+
 	char c = getchar(); 
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
 			case '\n' : 
 			{ // touche "entree" pour évoluer
-				evolue(g,gc,tempsEvolution);
+				evolue(g,gc,tempsEvolution,compte_voisins_vivants);
 				efface_grille(*g);
 				affiche_grille(*g, tempsEvolution);
 				break;
@@ -49,7 +52,7 @@ void debut_jeu(grille *g, grille *gc, int *tempsEvolution){
 			{ // touche 'n' pour charger dynamiquement une nouvelle grille
 				char nGrille[255];
 				// efface_grille(*g);
-				printf("Chargez une nouvelle grille dynamiquement  : ");
+				printf("Chargez la nouvelle grille avec son chemin : ");
 				scanf("%s", nGrille);
 				// efface_grille(*g);
 				// printf("\n\n");
@@ -66,6 +69,21 @@ void debut_jeu(grille *g, grille *gc, int *tempsEvolution){
 			case 'c' :
 			{
 				// voisinnage cyclique / non-cyclique
+				if (comptageNonCyclique == 1) { // On repasse à un comptage cyclique
+					comptageNonCyclique = 0;
+					compte_voisins_vivants = &(compte_voisins_vivants_cyclique);
+					printf("==> Mode cyclique \n");
+				} else { // On repasse à un comptage non-cyclique
+					comptageNonCyclique = 1;
+					compte_voisins_vivants = &(compte_voisins_vivants_non_cyclique);
+					printf("==> Mode Non-cyclique\n");
+				}
+				// printf("\n\e[1A");
+				printf("\n");
+
+				affiche_grille(*g, tempsEvolution);
+				printf("\n");
+				break;
 			}
 			default : 
 			{ // touche non traitée

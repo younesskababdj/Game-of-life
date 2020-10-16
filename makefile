@@ -25,7 +25,7 @@ main: main.o jeu.o io.o grille.o
 #La cible dist pour créer le tar 
 dist:
 	@mkdir -p dist
-	tar -J -cvf dist/KabbadjYouness-GoL-2.tar.xz  include src makefile Doxyfile 
+	tar -J -cvf dist/KabbadjYouness-GoL-2.tar.xz  grilles include src makefile Doxyfile 
 
 #La cible clean pour la supression des fichiers inutiles 
 clean:

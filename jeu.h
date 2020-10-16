@@ -41,8 +41,3 @@ int compte_voisins_vivants_non_cyclique (int i, int j, grille g);
 void evolue (grille *g, grille *gc, int *tempsEvolution, int (*compte_voisins_vivants) (int, int, grille));
 
 #endif
-
-
-
-
-

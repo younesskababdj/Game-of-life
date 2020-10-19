@@ -1,0 +1,80 @@
+\hypertarget{jeu_8h}{}\section{jeu.\+h File Reference}
+\label{jeu_8h}\index{jeu.\+h@{jeu.\+h}}
+
+
+Fonctions propres au jeu.  
+
+
+{\ttfamily \#include \char`\"{}grille.\+h\char`\"{}}\newline
+Include dependency graph for jeu.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{jeu_8h_a919a35926d94b71717909ecc50233f26}{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique} (int i, int j, \hyperlink{structgrille}{grille} g)
+\item 
+int \hyperlink{jeu_8h_a2e8fdd206d197391527920bbbc137eef}{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique} (int i, int j, \hyperlink{structgrille}{grille} g)
+\item 
+void \hyperlink{jeu_8h_aa44529bf584c5e652f6edb281f2e9061}{evolue} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc, int $\ast$temps\+Evolution, int($\ast$compte\+\_\+voisins\+\_\+vivants)(int, int, \hyperlink{structgrille}{grille}))
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fonctions propres au jeu. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{jeu_8h_a919a35926d94b71717909ecc50233f26}\label{jeu_8h_a919a35926d94b71717909ecc50233f26}} 
+\index{jeu.\+h@{jeu.\+h}!compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique}!jeu.\+h@{jeu.\+h}}
+\subsubsection{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique()}{compte\_voisins\_vivants\_cyclique()}}
+{\footnotesize\ttfamily int compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+Compte le nombre de voisins vivants de la cellule (i,j). Les bords sont cycliques. 
+\begin{DoxyParams}{Parameters}
+{\em i} & Ligne de la cellule \\
+\hline
+{\em j} & Colonne de la cellule \\
+\hline
+{\em g} & Grille dans laquelle se trouve cette cellule et ses voisins à compter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nombre de voisins vivants 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8h_a2e8fdd206d197391527920bbbc137eef}\label{jeu_8h_a2e8fdd206d197391527920bbbc137eef}} 
+\index{jeu.\+h@{jeu.\+h}!compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique}!jeu.\+h@{jeu.\+h}}
+\subsubsection{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique()}{compte\_voisins\_vivants\_non\_cyclique()}}
+{\footnotesize\ttfamily int compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+Compte le nombre de voisins vivants de la cellule (i,j). Les bords sont non cycliques. 
+\begin{DoxyParams}{Parameters}
+{\em i} & Ligne de la cellule \\
+\hline
+{\em j} & Colonne de la cellule \\
+\hline
+{\em g} & Grille dans laquelle se trouve cette cellule et ses voisins à compter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nombre de voisins vivants 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8h_aa44529bf584c5e652f6edb281f2e9061}\label{jeu_8h_aa44529bf584c5e652f6edb281f2e9061}} 
+\index{jeu.\+h@{jeu.\+h}!evolue@{evolue}}
+\index{evolue@{evolue}!jeu.\+h@{jeu.\+h}}
+\subsubsection{\texorpdfstring{evolue()}{evolue()}}
+{\footnotesize\ttfamily void evolue (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille} $\ast$}]{g,  }\item[{\hyperlink{structgrille}{grille} $\ast$}]{gc,  }\item[{int $\ast$}]{temps\+Evolution,  }\item[{int($\ast$)(int, int, \hyperlink{structgrille}{grille})}]{compte\+\_\+voisins\+\_\+vivants }\end{DoxyParamCaption})}
+
+Fait évoluer la grille g d\textquotesingle{}un pas de temps 
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointeur sur la grille à faire évoluer \\
+\hline
+{\em gc} & Pointeur sur la grille évoluée \\
+\hline
+{\em temps\+Evolution} & Entier représentant le temps (pas) d\textquotesingle{}évolution de la grille en cours \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,94 @@
+\hypertarget{io_8h}{}\section{io.\+h File Reference}
+\label{io_8h}\index{io.\+h@{io.\+h}}
+
+
+Fonctions d\textquotesingle{}input/output (entrées/sorties) du programme.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}grille.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}jeu.\+h\char`\"{}}\newline
+Include dependency graph for io.\+h\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{io_8h_a634cf584c380ce221d5d4199f3e813bd}{affiche\+\_\+trait} (int c)
+\item 
+void \hyperlink{io_8h_a64db5c037945ae6d82896b085ab3c0c8}{affiche\+\_\+ligne} (int c, int $\ast$ligne, int vieillissement)
+\item 
+void \hyperlink{io_8h_a9f637143f3ca25b1be8bf9514ca4b7f3}{affiche\+\_\+grille} (\hyperlink{structgrille}{grille} g, int temps\+Evolution, int comptage\+Cyclique, int vieillissement)
+\item 
+void \hyperlink{io_8h_ab36a6f8957cd3e682119007836ce6ad5}{efface\+\_\+grille} (\hyperlink{structgrille}{grille} g)
+\item 
+void \hyperlink{io_8h_a88493b3c55828670e47150a95ed7db5b}{debut\+\_\+jeu} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fonctions d\textquotesingle{}input/output (entrées/sorties) du programme. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{io_8h_a9f637143f3ca25b1be8bf9514ca4b7f3}\label{io_8h_a9f637143f3ca25b1be8bf9514ca4b7f3}} 
+\index{io.\+h@{io.\+h}!affiche\+\_\+grille@{affiche\+\_\+grille}}
+\index{affiche\+\_\+grille@{affiche\+\_\+grille}!io.\+h@{io.\+h}}
+\subsubsection{\texorpdfstring{affiche\+\_\+grille()}{affiche\_grille()}}
+{\footnotesize\ttfamily void affiche\+\_\+grille (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{temps\+Evolution,  }\item[{int}]{comptage\+Cyclique,  }\item[{int}]{vieillissement }\end{DoxyParamCaption})}
+
+Affichage d\textquotesingle{}une grille 
+\begin{DoxyParams}{Parameters}
+{\em g} & Grille à afficher \\
+\hline
+{\em temps\+Evolution} & Entier représentant le temps (pas) d\textquotesingle{}évolution de la grille en cours \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{io_8h_a64db5c037945ae6d82896b085ab3c0c8}\label{io_8h_a64db5c037945ae6d82896b085ab3c0c8}} 
+\index{io.\+h@{io.\+h}!affiche\+\_\+ligne@{affiche\+\_\+ligne}}
+\index{affiche\+\_\+ligne@{affiche\+\_\+ligne}!io.\+h@{io.\+h}}
+\subsubsection{\texorpdfstring{affiche\+\_\+ligne()}{affiche\_ligne()}}
+{\footnotesize\ttfamily void affiche\+\_\+ligne (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int $\ast$}]{ligne,  }\item[{int}]{vieillissement }\end{DoxyParamCaption})}
+
+Affichage d\textquotesingle{}une ligne de la grille 
+\begin{DoxyParams}{Parameters}
+{\em c} & Nombre de cellules de la ligne \\
+\hline
+{\em ligne} & Tableau indiquant pour chaque cellule si elle est vivante ou morte \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{io_8h_a634cf584c380ce221d5d4199f3e813bd}\label{io_8h_a634cf584c380ce221d5d4199f3e813bd}} 
+\index{io.\+h@{io.\+h}!affiche\+\_\+trait@{affiche\+\_\+trait}}
+\index{affiche\+\_\+trait@{affiche\+\_\+trait}!io.\+h@{io.\+h}}
+\subsubsection{\texorpdfstring{affiche\+\_\+trait()}{affiche\_trait()}}
+{\footnotesize\ttfamily void affiche\+\_\+trait (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+Affichage d\textquotesingle{}un trait horizontal 
+\begin{DoxyParams}{Parameters}
+{\em c} & Nombre de cellules du trait \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{io_8h_a88493b3c55828670e47150a95ed7db5b}\label{io_8h_a88493b3c55828670e47150a95ed7db5b}} 
+\index{io.\+h@{io.\+h}!debut\+\_\+jeu@{debut\+\_\+jeu}}
+\index{debut\+\_\+jeu@{debut\+\_\+jeu}!io.\+h@{io.\+h}}
+\subsubsection{\texorpdfstring{debut\+\_\+jeu()}{debut\_jeu()}}
+{\footnotesize\ttfamily void debut\+\_\+jeu (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille} $\ast$}]{g,  }\item[{\hyperlink{structgrille}{grille} $\ast$}]{gc }\end{DoxyParamCaption})}
+
+Débute le jeu 
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointeur sur la grille (principale) \\
+\hline
+{\em gc} & Pointeur sur la seconde grille allouée aux mêmes nombres de lignes et colonnes que la première et qui permettra plus tard l\textquotesingle{}évolution de la grille de g vers gc \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{io_8h_ab36a6f8957cd3e682119007836ce6ad5}\label{io_8h_ab36a6f8957cd3e682119007836ce6ad5}} 
+\index{io.\+h@{io.\+h}!efface\+\_\+grille@{efface\+\_\+grille}}
+\index{efface\+\_\+grille@{efface\+\_\+grille}!io.\+h@{io.\+h}}
+\subsubsection{\texorpdfstring{efface\+\_\+grille()}{efface\_grille()}}
+{\footnotesize\ttfamily void efface\+\_\+grille (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+Effacement d\textquotesingle{}une grille 
+\begin{DoxyParams}{Parameters}
+{\em g} & Grille à effacer \\
+\hline
+\end{DoxyParams}

@@ -11,6 +11,10 @@ OBJ_DIR = obj
 SRC_DIR = src
 DOC_DIR = doxyfile
 
+vpath %.h $(INC_DIR)
+vpath %.c $(SRC_DIR)
+vpath %.o $(OBJ_DIR)
+
 
 main: main.o jeu.o io.o grille.o
 	@mkdir -p $(BIN_DIR)

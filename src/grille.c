@@ -52,7 +52,7 @@ int init_grille_from_file (char * filename, grille* g){
 
 		fclose (pfile);
 	} else {
-		res = 1; 
+		res = 1; // Erreur
 	}
 	return res;
 }

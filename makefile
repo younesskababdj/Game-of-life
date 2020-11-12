@@ -1,37 +1,42 @@
-#Le compilateur utilisé 
+#Compilateur
+
 CC = gcc
 
+# Dossiers principaux
+RepertoireDesHeaders = include
+RepertoireDesObjets = obj
+RepertoiredesEx = bin
+RepertoireDesSources = src
+CPPFLAGS += -I/usr/include/cairo -Iinclude
+LDFLAGS += -lcairo -lm -lX11
 
-#Les Flags de compilation 
-CFLAGS = -I$(INC_DIR) -Wall
+# Options de compilation
+CFLAGS = $(CPPFLAGS) -Wall -g
 
-INC_DIR = include
-BIN_DIR = bin
-OBJ_DIR = obj
-SRC_DIR = src
-DOC_DIR = doxyfile
 
-vpath %.h $(INC_DIR)
-vpath %.c $(SRC_DIR)
-vpath %.o $(OBJ_DIR)
-
+vpath %.h $(RepertoireDesHeaders)
+vpath %.c $(RepertoireDesSources)
+vpath %.o $(RepertoireDesObjets)
 
 main: main.o jeu.o io.o grille.o
-	@mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $(OBJ_DIR)/main.o $(OBJ_DIR)/jeu.o $(OBJ_DIR)/io.o $(OBJ_DIR)/grille.o
-
+	@mkdir -p $(RepertoiredesEx)
+	$(CC) $(CFLAGS) -o $(RepertoiredesEx)/$@ $(RepertoireDesObjets)/main.o $(RepertoireDesObjets)/jeu.o $(RepertoireDesObjets)/io.o $(RepertoireDesObjets)/grille.o $(LDFLAGS)
+	@echo "\n=== Compilation terminée avec succès ==="
+	@echo "Lancez le programme avec ./bin/main <numéro de grille>"
 
 %.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $(OBJ_DIR)/$@ -c $<
+	@mkdir -p $(RepertoireDesObjets)
+	$(CC) $(CFLAGS) -o $(RepertoireDesObjets)/$@ -c $<
 
-
-#La cible dist pour créer le tar 
 dist:
 	@mkdir -p dist
-	tar -J -cvf dist/KabbadjYouness-GoL-2.tar.xz  grilles include grille.c grille.h io.c io.h jeu.c jeu.h main.c makefile Doxyfile 
+	tar -J -cvf dist/FleschBoris-GoL-v0.2.tar.xz grilles include src makefile Doxyfile
+	@echo "\n=== Archive créée avec succès ==="
 
-#La cible clean pour la supression des fichiers inutiles 
+
 clean:
-	rm -f $(OBJ_DIR)/*.o
-	rm -f $(BIN_DIR)/*
+	rm -f $(RepertoireDesObjets)/*.o
+	rm -f $(RepertoiredesEx)/*
+	rm -rf dist/
+	rm -rf doc/
+	@echo "\n=== Artefacts de compilation éliminés avec succès ==="

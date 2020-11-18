@@ -11,7 +11,7 @@
 #if MODECAIROGUI
 
     #define SIZEX 900
-    #define SIZEY 500
+    #define SIZEY 700
 
     /** 
      * Création d'une surface Xlib Cairo
@@ -26,7 +26,7 @@
     void cairo_close_x11_surface();
 
     /**
-     * Affichage d'un trait horizontal
+     * Affichage d'un trait horizontal (en mode GUI Cairo)
      * @param[in] c           Nombre de cellules du trait
      * @param[in] hauteur     Numéro de la hauteur du trait à tracer (en partant du haut de la grille)
      * @param[in] tailleLigne Hauteur de la ligne (en pixels)
@@ -34,7 +34,7 @@
     void affiche_trait (int c, int hauteur, float tailleLigne);
 
     /**
-     * Affichage d'une ligne de la grille
+     * Affichage d'une ligne de la grille (en mode GUI Cairo)
      * @param[in] c              Nombre de cellules de la ligne
      * @param[in] ligne          Tableau indiquant pour chaque cellule si elle est vivante ou morte
      * @param[in] vieillissement Indique si le vieillissement est activé (1) ou désactivé (0)
@@ -44,20 +44,27 @@
     void affiche_ligne (int c, int* ligne, int vieillissement, int hauteur, float tailleLigne);
 
     /**
-     * Effacement de la grille sur l'interface graphique
+     * Effacement de la grille sur l'interface graphique (en mode GUI Cairo)
      */
     void efface_grille ();
+
+    /**
+     * Affiche une entrée de texte au bas de l'écran
+     * @param[in] input  Entrée à afficher (saisie au clavier)
+     * @param[in] erreur Erreur à afficher entre parenthèses si nécessaire
+     */
+    void drawTextInput(char *input, char *erreur);
 
 #else
 
     /**
-     * Affichage d'un trait horizontal
+     * Affichage d'un trait horizontal (en mode Texte)
      * @param[in] c Nombre de cellules du trait
      */
     void affiche_trait (int c);
 
     /**
-     * Affichage d'une ligne de la grille
+     * Affichage d'une ligne de la grille (en mode Texte)
      * @param[in] c              Nombre de cellules de la ligne
      * @param[in] ligne          Tableau indiquant pour chaque cellule si elle est vivante ou morte
      * @param[in] vieillissement Indique si le vieillissement est activé (1) ou désactivé (0)
@@ -65,7 +72,7 @@
     void affiche_ligne (int c, int* ligne, int vieillissement);
 
     /**
-     * Effacement d'une grille
+     * Effacement d'une grille (en mode Texte)
      * @param[in] g Grille à effacer
      */
     void efface_grille (grille g);
@@ -91,4 +98,3 @@ void debut_jeu(grille *g, grille *gc);
 void affiche_grille (grille g, int tempsEvolution, int comptageCyclique, int vieillissement, int tempsOscillation);
 
 #endif
-

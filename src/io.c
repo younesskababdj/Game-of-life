@@ -3,7 +3,6 @@
 #include <cairo-xlib.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-
 #include "io.h"
 
 #if MODECAIROGUI
@@ -13,11 +12,11 @@
 =====================
 */
 
-#define MARGE_GAUCHE_GRILLE 20
-#define MARGE_HAUTE_GRILLE 60
+#define MARGE_GAUCHE_GRILLE 200
+#define MARGE_HAUTE_GRILLE 300
 #define LARGEUR_GRILLE 450
-#define HAUTEUR_GRILLE 400
-#define CAIRO_LINE_WIDTH 2
+#define HAUTEUR_GRILLE 300
+#define CAIRO_LINE_WIDTH 3
 
 extern cairo_surface_t *sfc;
 XClassHint *classHint;
@@ -44,7 +43,7 @@ cairo_surface_t *cairo_create_x11_surface0(int x, int y) {
     XMapWindow(dsp, da);
 
 
-	XStoreName(dsp, da, "Jeu de la vie");
+	XStoreName(dsp, da, "Jeu de la vie--kabbadj");
 
 	classHint = XAllocClassHint();
 	if (classHint) {
@@ -154,68 +153,74 @@ void affiche_trait (int c, int hauteur, float tailleLigneGrille){
 void affiche_grille (grille g, int tempsEvolution, int comptageCyclique, int vieillissement, int tempsOscillation){
 	int i, l=g.nbl, c=g.nbc;
 	char strTemps[255], strComptageCyclique[255], strVieillissement[255], strOscillation[255];
-	sprintf(strTemps, "- Temps : %d", tempsEvolution);
-	sprintf(strComptageCyclique, comptageCyclique ? "- Comptage : Cyclique" : "- Comptage : Non-cyclique");
-	sprintf(strVieillissement, vieillissement ? "- Vieillissement : Active" : "- Vieillissement : Desactive");
+	sprintf(strTemps, "==> Temps : %d", tempsEvolution);
+	sprintf(strComptageCyclique, comptageCyclique ? "==> Comptage : Cyclique" : "==> Comptage : Non-cyclique");
+	sprintf(strVieillissement, vieillissement ? "==> Vieillissement : Active" : "==> Vieillissement : Desactive");
 
 	if (tempsOscillation == -1) {
-		sprintf(strOscillation, "- Oscillation : Non testee");
+		sprintf(strOscillation, "==> Oscillation : Non testee");
 	} else if (tempsOscillation == 0) {
-		sprintf(strOscillation, "- Oscillation : Grille non oscillante");
+		sprintf(strOscillation, "==> Oscillation : Grille non oscillante");
 	} else {
-		sprintf(strOscillation, "- Oscillation : %d pas de temps par période", tempsOscillation);
+		sprintf(strOscillation, "==> Oscillation : %d pas de temps par période", tempsOscillation);
 	}
 
 
 	cairo_t *cr;
 	cr = cairo_create(sfc);
 
-	cairo_set_source_rgb(cr, 0.396078431372549, 0.6901960784313725, 0.9294117647058824);
+	cairo_set_source_rgb(cr, 0, 1, 0);
 
 	cairo_select_font_face(cr, "Arial",
 		CAIRO_FONT_SLANT_NORMAL,
 		CAIRO_FONT_WEIGHT_BOLD);
 
 	cairo_set_font_size(cr, 26);
-	cairo_move_to(cr, 20, 40);
-	cairo_show_text(cr, "Jeu de la vie (Conway)");
+	cairo_move_to(cr, 200, 30);
+	cairo_show_text(cr, "Jeu de la vie (kabbadj-youness)");
+	cairo_move_to(cr, 200,45);
+	cairo_show_text(cr, "-------------------------------------------");
+
 
 	cairo_set_font_size(cr, 22);
 	cairo_move_to(cr, 500, 80);
-	cairo_move_to(cr, 500, 75);
+	cairo_move_to(cr, 20, 75);
 	cairo_show_text(cr, "Commandes :");
+	cairo_move_to(cr, 20, 85);
+	cairo_show_text(cr, "---------------------");
 
-	cairo_move_to(cr, 500, 290);
+	cairo_move_to(cr, 500, 75);
 	cairo_show_text(cr, "Informations :");
+	cairo_move_to(cr, 500, 85);
+	cairo_show_text(cr, "---------------------");
 
-	cairo_set_source_rgb(cr, 0.6666666666666666, 0.6901960784313725, 0.7254901960784313);
+	cairo_set_source_rgb(cr, 1, 1, 1);
 
 	cairo_set_font_size(cr, 18);
-	cairo_move_to(cr, 500, 100);
+	cairo_move_to(cr, 20, 100);
 	cairo_show_text(cr, "- Entrée / clic gauche : Fait évoluer la grille");
 	cairo_set_font_size(cr, 18);
-	cairo_move_to(cr, 500, 125);
+	cairo_move_to(cr, 20, 125);
 	cairo_show_text(cr, "- n : Charger une nouvelle grille");
-	cairo_move_to(cr, 500, 150);
+	cairo_move_to(cr, 20, 150);
 	cairo_show_text(cr, "- c : Passer en mode cyclique/non-cyclique");
-	cairo_move_to(cr, 500, 175);
+	cairo_move_to(cr, 20, 175);
 	cairo_show_text(cr, "- v : Activer/desactiver le vieillissement");
-	cairo_move_to(cr, 500, 200);
+	cairo_move_to(cr, 20, 200);
 	cairo_show_text(cr, "- o : Tester si la grille est oscillante");
-	cairo_move_to(cr, 500, 225);
+	cairo_move_to(cr, 20, 225);
 	cairo_show_text(cr, "- d : Ouvrir la doc (doxygen & firefox requis)");
-	cairo_move_to(cr, 500, 250);
+	cairo_move_to(cr, 20, 250);
 	cairo_show_text(cr, "- q / clic droit : Quitter le programme");
 
-	cairo_move_to(cr, 500, 315);
+	cairo_move_to(cr, 500, 100);
 	cairo_show_text(cr, strTemps);
-	cairo_move_to(cr, 500, 340);
+	cairo_move_to(cr, 500, 125);
 	cairo_show_text(cr, strComptageCyclique);  
-	cairo_move_to(cr, 500, 365);
+	cairo_move_to(cr, 500, 150);
 	cairo_show_text(cr, strVieillissement);  
-	cairo_move_to(cr, 500, 390);
+	cairo_move_to(cr, 500, 175);
 	cairo_show_text(cr, strOscillation);  
-
 	cairo_destroy(cr);
 
 	int hauteur = 0;
@@ -236,7 +241,7 @@ void drawTextInput(char *input, char *erreur) {
 	if (strcmp(erreur, "") == 0) {
 		sprintf(inputLabel, "Veuillez indiquer le numero de la grille a charger :");
 	} else {
-		sprintf(inputLabel, "Veuillez indiquer le numero de la grille a charger (%s) :", erreur);
+		sprintf(inputLabel, "Veuillez indiquer le numero de la grille a charger  	 (%s) :", erreur);
 	}
 	
 
@@ -302,7 +307,7 @@ void debut_jeu(grille *g, grille *gc) {
 		XNextEvent(cairo_xlib_surface_get_display(sfc), &e);
 		
 		if (e.type==Expose && e.xexpose.count<1) {
-			affiche_grille(*g, tempsEvolution, comptageCyclique, vieillissement, tempsOscillation);
+			affiche_grille(*g, tempsEvolution, comptageCyclique, 			vieillissement, tempsOscillation);
 		} else if (e.type == KeyPress) { // Touche pressée
 			if (e.xkey.keycode == 36 || e.xkey.keycode == 104) { // Touche entrée (ou entrée numpad)
 				evolue(g,gc,&tempsEvolution,compte_voisins_vivants,vieillissement);
@@ -396,7 +401,7 @@ void debut_jeu(grille *g, grille *gc) {
 		}
 
 		if (endGame) {
-			printf("=== Fin du programme. A bientot ! ===\n");
+			printf("=== Fin du jeu. good luck ! (-_-) ===\n");
 			return;
 		}
 
@@ -513,7 +518,7 @@ void debut_jeu(grille *g, grille *gc){
 				do {
 					char numeroGrille[10];
 					char fichierGrille[100] = "grilles/grille";
-					printf("Numero de la nouvelle grille a charger : ");
+					printf("Veuillez indiquer le Numero de la nouvelle grille a charger : ");
 					scanf("%s", numeroGrille);
 					strcat(fichierGrille, numeroGrille);
 					strcat(fichierGrille, ".txt");
@@ -583,9 +588,8 @@ void debut_jeu(grille *g, grille *gc){
 		}
 		c = getchar();
 	}
-	printf("A bientot !\n");
+	printf("=== Fin du jeu. good luck ! (-_-) ===\n");
 	return;
 }
 
 #endif
-

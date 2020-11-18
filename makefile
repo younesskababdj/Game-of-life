@@ -36,8 +36,8 @@ main: main.o jeu.o io.o grille.o
 
 dist:
 	@mkdir -p dist
-	tar -J -cvf dist/FleschBoris-GoL-v0.4.tar.xz grilles include src makefile Doxyfile
-	@echo "\n=== Archive créée avec succès ==="
+	tar -J -cvf dist/gameoflife_KABBADJ_Youness.tar.xz grilles include src makefile Doxyfile
+	@echo "\n=== Archive créée avec succès (-_-) ==="
 	
 
 clean:

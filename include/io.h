@@ -22,9 +22,8 @@
 
     /**
      * Destruction d'une surface Xlib Cairo et fermeture de la connexion à X
-     * @param[in] sfc Surface Cairo à détruire
      */
-    void cairo_close_x11_surface(cairo_surface_t *sfc);
+    void cairo_close_x11_surface();
 
     /**
      * Affichage d'un trait horizontal
@@ -66,15 +65,6 @@
     void affiche_ligne (int c, int* ligne, int vieillissement);
 
     /**
-     * Affichage d'une grille
-     * @param[in] g                Grille à afficher
-     * @param[in] tempsEvolution   Entier représentant le temps (pas) d'évolution de la grille en cours
-     * @param[in] comptageCyclique Indique si le comptage est en mode cyclique (1) ou non-cyclique (0)
-     * @param[in] vieillissement   Indique si le vieillissement est activé (1) ou désactivé (0)
-     */
-    void affiche_grille (grille g, int tempsEvolution, int comptageCyclique, int vieillissement);
-
-    /**
      * Effacement d'une grille
      * @param[in] g Grille à effacer
      */
@@ -89,4 +79,16 @@
  */
 void debut_jeu(grille *g, grille *gc);
 
+
+/**
+ * Affichage d'une grille
+ * @param[in] g                  Grille à afficher
+ * @param[in] tempsEvolution     Entier représentant le temps (pas) d'évolution de la grille en cours
+ * @param[in] comptageCyclique   Indique si le comptage est en mode cyclique (1) ou non-cyclique (0)
+ * @param[in] vieillissement     Indique si le vieillissement est activé (1) ou désactivé (0)
+ * @param[in] tempsOscillation   Indique le temps d'oscillation d'une grille (ou -1 si non testé ou 0 si non oscillante)
+ */
+void affiche_grille (grille g, int tempsEvolution, int comptageCyclique, int vieillissement, int tempsOscillation);
+
 #endif
+

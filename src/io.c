@@ -209,8 +209,6 @@ void affiche_grille (grille g, int tempsEvolution, int comptageCyclique, int vie
 	cairo_move_to(cr, 20, 200);
 	cairo_show_text(cr, "- o : Tester si la grille est oscillante");
 	cairo_move_to(cr, 20, 225);
-	cairo_show_text(cr, "- d : Ouvrir la doc (doxygen & firefox requis)");
-	cairo_move_to(cr, 20, 250);
 	cairo_show_text(cr, "- q / clic droit : Quitter le programme");
 
 	cairo_move_to(cr, 500, 100);
